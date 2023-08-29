@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DRHKAT</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+  <!-- component -->
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+  <!-- component -->
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/countup@1.8.2/dist/countUp.min.js"></script>
+  <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css');</style>
+
+</head>
+<body lass="bg-gray-200 lg:flex">
+<nav class="bg-white border-b border-gray-300">
+  <div class="flex justify-between items-center px-9">
+    <!-- Ícono de Menú -->
+    <button id="menu-button" class="lg:hidden">
+      <i class="fas fa-bars text-cyan-500 text-lg"></i>
+    </button>
+    <!-- Logo -->
+    <div class="ml-1">
+      <img src="/LOGO.bmp" alt="logo" class="h-20 w-28">
+    </div>
+
+    <!-- Ícono de Notificación y Perfil -->
+    <div class="space-x-4">
+      <button>
+        <i class="fas fa-bell text-cyan-500 text-lg"></i>
+      </button>
+
+      <!-- Botón de Perfil -->
+      <button>
+        <i class="fas fa-user text-cyan-500 text-lg"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Barra lateral -->
+<div id="sidebar" class="lg:block hidden bg-gray-900 w-68 h-screen fixed rounded-none border-none">
+  <!-- Items -->
+  <div class="p-4 space-y-4">
+    <!-- Inicio -->
+    <a href="/" aria-label="dashboard" class="relative px-4 py-3 flex items-center space-x-4 rounded-lg text-white bg-blue-300 from-sky-600 to-cyan-400">
+      <i class="fas fa-home text-white"></i>
+      <span class="-mr-1 font-medium">Menu</span>
+    </a>
+    <a href="/addusers" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-500 group">
+      <i class="fas fa-gift"></i>
+      <span>Contribuable</span>
+    </a>
+    <a href="/biens" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-500 group">
+      <i class="fas fa-store"></i>
+      <span>Bien</span>
+    </a>
+
+    <a href="/bienAutomobiles" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-500 group">
+      <i class="fas fa-wallet"></i>
+      <span>BienAutomobile</span>
+    </a>
+    <a href="/taxationirv" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-500 group">
+      <i class="fas fa-exchange-alt"></i>
+      <span>TaxeIRV</span>
+    </a>
+    <a href="#" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-500 group">
+      <i class="fas fa-user"></i>
+      <span>Note</span>
+    </a>
+    <a href="#" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-500 group">
+      <i class="fas fa-sign-out-alt"></i>
+      <span>log out</span>
+    </a>
+  </div>
+</div>
+
+
+<div class="lg:w-full lg:ml-4 px-72 py-20">
+  <div>
+
+    <h2 class="font-bold text-xl text-gray-600">Enregistrer les Biens Automobiles</h2>
+    <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
+      <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
+        <div class="text-gray-600">
+          <p class="text-lg font-bold">Personne Details</p>
+          <p>Remplissez tous les champs.</p>
+          <img src="/LOGO.bmp" class="m-4">
+        </div>
+        <div class="lg:col-span-2">
+          <form action="/addTaxe" method="post">
+            <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+
+              <div class="md:col-span-2">
+                <label for="marque">marque</label>
+                <input type="text" name="marque" placeholder="marque" id="marque" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required>
+              </div>
+              <div class="md:col-span-2">
+                <label for="adrese">adrese</label>
+                <input type="text" name="adrese" placeholder="adrese" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required>
+              </div>
+              <div class="md:col-span-3">
+                <label for="chassit">numero de chassis</label>
+                <input type="text" name="chassit" placeholder="chassit" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required>
+              </div>
+              <div class="md:col-span-3">
+                <label for="numeroPlaque">numero de la plaque</label>
+                <input type="text" name="numeroPlaque" placeholder="numeroPlaque" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required>
+              </div>
+              <div class="md:col-span-2">
+                <label for="puissanceFiscale">puissanceFiscale</label>
+                <input type="text" name="puissanceFiscale" placeholder="puissanceFiscale" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required>
+              </div>
+              <div class="md:col-span-3">
+                <label for="montant">montant</label>
+                <input type="text" name="montant" placeholder="montant" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required>
+              </div>
+              <div class="md:col-span-2">
+                <label for="devise">devise</label>
+                <select name="devise"   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                  <option value="USD">USD</option>
+                  <option value="FC">FC</option>
+                </select>
+              </div>
+              <div class="md:col-span-3">
+                <label for="taxateur">taxateur</label>
+                <input type="text" name="taxateur" placeholder="taxateur" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required>
+              </div>
+              <div class="md:col-span-2">
+                <label for="lieu">lieu</label>
+                <input type="text" name="lieu" placeholder="lieu" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required>
+            </div>
+              <div class="md:col-span-3">
+                <label for="date">Date</label>
+                <input type="date" name="note" placeholder="Date" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required>
+              </div>
+
+              <div class="md:col-span-3 text-right">
+                <div class="inline-flex items-end">
+                  <button type="submit"  class="bg-blue-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded">
+                    ajouter
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var menuButton = document.getElementById('menu-button');
+    var sidebar = document.getElementById('sidebar');
+
+    menuButton.addEventListener('click', function() {
+      sidebar.classList.toggle('hidden');
+      sidebar.classList.toggle('lg:block');
+    });
+  });
+</script>

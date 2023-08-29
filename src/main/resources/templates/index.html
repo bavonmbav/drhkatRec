@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DRHKAT</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <!-- component -->
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body lass="bg-gray-200 lg:flex">
+<nav class="bg-white border-b border-gray-300">
+    <div class="flex justify-between items-center px-9">
+        <!-- Ícono de Menú -->
+        <button id="menu-button" class="lg:hidden">
+            <i class="fas fa-bars text-cyan-500 text-lg"></i>
+        </button>
+        <!-- Logo -->
+        <div class="ml-1">
+            <img th:src="@{/LOGO.bmp}" alt="logo" class="h-20 w-28">
+        </div>
+
+        <!-- Ícono de Notificación y Perfil -->
+        <div class="space-x-4">
+            <button>
+                <i class="fas fa-bell text-cyan-500 text-lg"></i>
+            </button>
+
+            <!-- Botón de Perfil -->
+            <button>
+                <i class="fas fa-user text-cyan-500 text-lg"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Barra lateral -->
+<div id="sidebar" class="lg:block hidden bg-gray-900 w-68 h-screen fixed rounded-none border-none">
+    <!-- Items -->
+    <div class="p-4 space-y-4">
+        <!-- Inicio -->
+        <a href="/" aria-label="dashboard" class="relative px-4 py-3 flex items-center space-x-4 rounded-lg text-white bg-blue-300 from-sky-600 to-cyan-400">
+            <i class="fas fa-home text-white"></i>
+            <span class="-mr-1 font-medium">Menu</span>
+        </a>
+        <a href="/addusers" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-500 group">
+            <i class="fas fa-gift"></i>
+            <span>Contribuable</span>
+        </a>
+        <a href="/biens" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-500 group">
+            <i class="fas fa-store"></i>
+            <span>Bien</span>
+        </a>
+
+        <a href="/bienAutomobiles" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-500 group">
+            <i class="fas fa-wallet"></i>
+            <span>BienAutomobile</span>
+        </a>
+        <a href="/taxationirv" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-500 group">
+            <i class="fas fa-exchange-alt"></i>
+            <span>TaxeIRV</span>
+        </a>
+        <a href="#" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-500 group">
+            <i class="fas fa-user"></i>
+            <span>Note</span>
+        </a>
+        <a href="/logout" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-500 group">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>log out</span>
+        </a>
+    </div>
+</div>
+
+<div class="lg:w-full lg:ml-64 px-34 py-20 ">
+
+    <!-- Contenedor Principal -->
+    <div class="lg:flex gap-4 items-stretch">
+        <!-- Caja Grande 1 -->
+        <div class="bg-blue-300 md:p-2 p-6 rounded-lg border border-gray-200 mb-4 lg:mb-0 shadow-md lg:w-[35%]">
+            <div class="flex justify-center items-center space-x-5 h-full">
+                <div>
+                    <h1 class="text-4xl font-bold text-gray-600">Impot Foncier</h1>
+                    <p class="text-4xl font-bold text-gray-50"><span th:text="${sum}"></span> FC </p>
+                    <p class="font-bold text-gray-400"><span th:text="${sume}"></span> USD </p>
+                </div>
+                <img th:src="@{/impo.png}" alt="wallet" class="h-24 md:h-20 w-38">
+            </div>
+        </div>
+        <div class="lg:flex gap-4 items-stretch">
+            <!-- Caja Grande 2 -->
+            <div class="bg-amber-200 md:p-2 p-6 rounded-lg border border-gray-200 mb-4 lg:mb-0 shadow-md lg:w-[35%]">
+                <div class="flex justify-center items-center space-x-5 h-full">
+                    <div>
+                        <p>Vignettes</p>
+                        <h2 class="text-4xl font-bold text-gray-600">535</h2>
+                        <p>25.365 $</p>
+                    </div>
+                    <img src="https://www.emprenderconactitud.com/img/Wallet.png" alt="wallet" class="h-24 md:h-20 w-38">
+                </div>
+            </div>
+        </div>
+        <div class="lg:flex gap-4 items-stretch">
+            <!-- Caja Grande 2 -->
+            <div class="bg-white md:p-2 p-6 rounded-lg border border-gray-200 mb-4 lg:mb-0 shadow-md lg:w-[35%]">
+                <div class="flex justify-center items-center space-x-5 h-full">
+                    <div>
+                        <p>Taxes</p>
+                        <h2 class="text-4xl font-bold text-gray-600">80.000</h2>
+                        <p>80.000.000.000 CDF</p>
+                    </div>
+                    <img src="https://www.emprenderconactitud.com/img/Wallet.png" alt="wallet" class="h-24 md:h-20 w-38">
+                </div>
+            </div>
+        </div>
+        <div class="lg:flex gap-4 items-stretch">
+            <!-- Caja Grande 2 -->
+            <div class="bg-white md:p-2 p-6 rounded-lg border border-gray-200 mb-4 lg:mb-0 shadow-md lg:w-[35%]">
+                <div class="flex justify-center items-center space-x-5 h-full">
+                    <div>
+                        <p>Retenue Locative</p>
+                        <h2 class="text-4xl font-bold text-gray-600">5065</h2>
+                        <p>25.365 $</p>
+                    </div>
+                    <img src="https://www.emprenderconactitud.com/img/Wallet.png" alt="wallet" class="h-24 md:h-20 w-38">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--       charte graphique-->
+    <div class="lg:flex gap-4 items-stretch m-8">
+        <div class="bg-white md:p-2 p-6 rounded-lg border border-gray-200 mb-4 lg:mb-0 shadow-md lg:w-[35%] ">
+            <div class="flex justify-center items-center space-x-5 h-full" >
+                <canvas id="taxationChart"></canvas>
+            </div>
+        </div>
+
+        <!--    verticale    -->
+        <div class="bg-white md:p-2 p-6 rounded-lg border border-gray-200 mb-4 lg:mb-0 shadow-md lg:w-[35%] ">
+            <div class="flex justify-center items-center space-x-5 h-full" >
+                <canvas id="pieChart" width="400" height="400"></canvas>
+            </div>
+        </div>
+
+<!--        verticale trois-->
+        <div class="bg-white md:p-2 p-6 rounded-lg border border-gray-200 mb-4 lg:mb-0 shadow-md lg:w-[35%] ">
+            <div class="flex justify-center items-center space-x-5 h-full" >
+                <canvas id="polarAreaChart" width="400" height="400"></canvas>
+            </div>
+        </div>
+
+    </div>
+    <!-- troixieme graphe   -->
+    <div class="lg:flex gap-4 items-stretch">
+        <div class="bg-white rounded-lg p-4 shadow-md my-4 ">
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var menuButton = document.getElementById('menu-button');
+        var sidebar = document.getElementById('sidebar');
+
+        menuButton.addEventListener('click', function() {
+            sidebar.classList.toggle('hidden');
+            sidebar.classList.toggle('lg:block');
+        });
+    });
+</script>
+
+<script th:inline="javascript">
+    var sumData = [[${sum}]]; // Récupérer la valeur du modèle Thymeleaf
+    var sum = [[${sum}]];
+
+    // Créer le graphique
+    var ctx = document.getElementById('taxationChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Total FC'],
+            datasets: [{
+                label: 'Sum',
+                data: [sumData],
+                backgroundColor: 'rgba(245,26,76,0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+<!--
+deuxieme graphe
+-->
+<script th:inline="javascript">
+    // Données du graphique
+    var data = {
+        labels: ['Catégorie 1', 'Impot', 'Catégorie 3'],
+        datasets: [{
+            data: [300, [[${sum}]], [[${sum}]]],
+            backgroundColor: ['rgba(17,101,255,0.6)', 'rgba(248,1,1,0.6)', 'rgb(75,255,7)'],
+            borderColor: ['rgba(17,101,255,0.6)', 'rgba(248,1,1,0.6)', 'rgb(75,255,7)'],
+            borderWidth: 1
+        }]
+    };
+
+    // Options du graphique
+    var options = {
+        responsive: true,
+        maintainAspectRatio: false,
+        title: {
+            display: true,
+            text: 'Graphique à Secteurs'
+        }
+    };
+
+    // Créer le graphique
+    var ctx = document.getElementById('pieChart').getContext('2d');
+    var myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: data,
+        options: options
+    });
+</script>
+
+<!--
+troixieme graphe
+-->
+<script th:inline="javascript">
+    // Données du graphique
+    var data = {
+        labels: ['Impot', 'Catégorie 2', 'Catégorie 3', 'Catégorie 4'],
+        datasets: [{
+            data: [5496350, [[${sum}]], 1862800, 5496350],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.6)',
+                'rgba(54, 162, 235, 0.6)',
+                'rgba(75, 192, 192, 0.6)',
+                'rgba(255, 206, 86, 0.6)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(255, 206, 86, 1)'
+            ],
+            borderWidth: 1
+        }]
+    };
+
+    // Options du graphique
+    var options = {
+        responsive: true,
+        maintainAspectRatio: false,
+        title: {
+            display: true,
+            text: 'Graphique en Secteurs Polaires'
+        }
+    };
+
+    // Créer le graphique
+    var ctx = document.getElementById('polarAreaChart').getContext('2d');
+    var myPolarAreaChart = new Chart(ctx, {
+        type: 'polarArea',
+        data: data,
+        options: options
+    });
+</script>

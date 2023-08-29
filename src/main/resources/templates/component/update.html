@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>DRHKAT</title>
+</head>
+<body>
+        <div>
+            <form th:action="${'/update/'+users.id}" method="post">
+                <div>
+                    <input type="text" name="nom"
+                           th:value="${users.getNom()}"
+                           placeholder="Nom">
+                </div>
+                <div>
+                    <input type="text" name="postnom"
+                           th:value="${users.getPostnom()}"
+                           placeholder="postnom">
+                </div>
+                <div>
+                    <input type="text" name="email"
+                           th:value="${users.getEmail()}"
+                           placeholder="email">
+                </div>
+
+                <div>
+                    <input type="text" name="phone"
+                           th:value="${users.getPhone()}"
+                           placeholder="phhone">
+                </div>
+                <div>
+                    <select name="genre">
+                        <option value="M" th:selected="${users.getGenre() == 'M'}">masculin</option>
+                        <option value="F" th:selected="${users.getGenre() == 'F'}"> feminin</option>
+                    </select>
+                </div>
+                <div>
+                    <input type="text" name="ville"
+                           th:value="${users.getVille()}"
+                           placeholder="Ville">
+                </div>
+
+                <div>
+                    <input type="text" name="province"
+                           th:value="${users.getProvince()}"
+                           placeholder="Province">
+                </div>
+                <div>
+                    <button type="submit">
+                        ajouter
+                    </button>
+                    <a href="/">
+                        Annuler
+                    </a>
+                </div>
+
+
+            </form>
+        </div>
+</body>
+</html>
