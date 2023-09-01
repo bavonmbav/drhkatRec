@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>DRHKAT</title>
@@ -26,14 +27,15 @@
 
         <!-- Ícono de Notificación y Perfil -->
         <div class="space-x-4">
+            <!-- Botón de Perfil -->
+            <button>
+                <span sec:authentication="name"></span>
+                <i class="fas fa-user text-cyan-500 text-lg"></i>
+            </button>
             <button>
                 <i class="fas fa-bell text-cyan-500 text-lg"></i>
             </button>
 
-            <!-- Botón de Perfil -->
-            <button>
-                <i class="fas fa-user text-cyan-500 text-lg"></i>
-            </button>
         </div>
     </div>
 </nav>
@@ -43,11 +45,12 @@
     <!-- Items -->
     <div class="p-4 space-y-4">
         <!-- Inicio -->
-        <a href="/" aria-label="dashboard" class="relative px-4 py-3 flex items-center space-x-4 rounded-lg text-white bg-blue-300 from-sky-600 to-cyan-400">
+        <a href="/home" aria-label="dashboard"
+           class="relative px-4 py-3 flex items-center space-x-4 rounded-lg text-white bg-blue-300 from-sky-600 to-cyan-400">
             <i class="fas fa-home text-white"></i>
             <span class="-mr-1 font-medium">Menu</span>
         </a>
-        <a href="/addusers" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-500 group">
+        <a href="/addusers" sec:authorize="hasRole('ADMIN')" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-500 group">
             <i class="fas fa-gift"></i>
             <span>Contribuable</span>
         </a>
@@ -68,7 +71,7 @@
             <i class="fas fa-user"></i>
             <span>Note</span>
         </a>
-        <a href="/logout" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-500 group">
+        <a th:href="@{/logout}" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-500 group">
             <i class="fas fa-sign-out-alt"></i>
             <span>log out</span>
         </a>
@@ -99,7 +102,8 @@
                         <h2 class="text-4xl font-bold text-gray-600">535</h2>
                         <p>25.365 $</p>
                     </div>
-                    <img src="https://www.emprenderconactitud.com/img/Wallet.png" alt="wallet" class="h-24 md:h-20 w-38">
+                    <img src="https://www.emprenderconactitud.com/img/Wallet.png" alt="wallet"
+                         class="h-24 md:h-20 w-38">
                 </div>
             </div>
         </div>
@@ -112,7 +116,8 @@
                         <h2 class="text-4xl font-bold text-gray-600">80.000</h2>
                         <p>80.000.000.000 CDF</p>
                     </div>
-                    <img src="https://www.emprenderconactitud.com/img/Wallet.png" alt="wallet" class="h-24 md:h-20 w-38">
+                    <img src="https://www.emprenderconactitud.com/img/Wallet.png" alt="wallet"
+                         class="h-24 md:h-20 w-38">
                 </div>
             </div>
         </div>
@@ -125,33 +130,32 @@
                         <h2 class="text-4xl font-bold text-gray-600">5065</h2>
                         <p>25.365 $</p>
                     </div>
-                    <img src="https://www.emprenderconactitud.com/img/Wallet.png" alt="wallet" class="h-24 md:h-20 w-38">
+                    <img src="https://www.emprenderconactitud.com/img/Wallet.png" alt="wallet"
+                         class="h-24 md:h-20 w-38">
                 </div>
             </div>
         </div>
     </div>
 
 
-
-
     <!--       charte graphique-->
     <div class="lg:flex gap-4 items-stretch m-8">
         <div class="bg-white md:p-2 p-6 rounded-lg border border-gray-200 mb-4 lg:mb-0 shadow-md lg:w-[35%] ">
-            <div class="flex justify-center items-center space-x-5 h-full" >
+            <div class="flex justify-center items-center space-x-5 h-full">
                 <canvas id="taxationChart"></canvas>
             </div>
         </div>
 
         <!--    verticale    -->
         <div class="bg-white md:p-2 p-6 rounded-lg border border-gray-200 mb-4 lg:mb-0 shadow-md lg:w-[35%] ">
-            <div class="flex justify-center items-center space-x-5 h-full" >
+            <div class="flex justify-center items-center space-x-5 h-full">
                 <canvas id="pieChart" width="400" height="400"></canvas>
             </div>
         </div>
 
-<!--        verticale trois-->
+        <!--        verticale trois-->
         <div class="bg-white md:p-2 p-6 rounded-lg border border-gray-200 mb-4 lg:mb-0 shadow-md lg:w-[35%] ">
-            <div class="flex justify-center items-center space-x-5 h-full" >
+            <div class="flex justify-center items-center space-x-5 h-full">
                 <canvas id="polarAreaChart" width="400" height="400"></canvas>
             </div>
         </div>

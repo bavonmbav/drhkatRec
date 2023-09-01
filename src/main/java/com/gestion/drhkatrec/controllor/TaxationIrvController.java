@@ -34,7 +34,7 @@ public class TaxationIrvController {
         return "component/taxationIrv";
     }
 
-    @GetMapping("/")
+    @GetMapping("/index")
     public String getTaxationSum(Model model) {
         String query = "SELECT SUM(montant) FROM taxationirv WHERE devise = 'FC'";
         Double sum = jdbcTemplate.queryForObject(query, Double.class);

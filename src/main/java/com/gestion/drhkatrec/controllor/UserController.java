@@ -20,7 +20,7 @@ public class UserController {
     private UserService service;
 
     public ArrayList<Users> user;
-    @GetMapping("/h")
+    @GetMapping("/home")
     public String index(Model model)
     {
        user = service.findAll();
@@ -51,7 +51,7 @@ public class UserController {
             return "component/update";
         }
         repo.save(users);
-        return "redirect:/";
+        return "redirect:/index";
 
     }
 
@@ -59,7 +59,7 @@ public class UserController {
     public String edit(Model model, @PathVariable String id) {
         Optional<Users> users = service.Update(Long.parseLong(id));
         if (users.isEmpty()) {
-            return "redirect:/";
+            return "redirect:/index";
         }
         model.addAttribute("users", users.get());
         return "component/update";
@@ -69,10 +69,10 @@ public class UserController {
     public String delete(@PathVariable String id) {
         Optional<Users> usersdelete = service.findById(Long.parseLong(id));
         if (usersdelete.isEmpty()) {
-            return "redirect:/";
+            return "redirect:/index";
         }
         service.delete(usersdelete.get());
-        return "redirect:/";
+        return "redirect:/index";
     }
 
 }

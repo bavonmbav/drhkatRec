@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
   <title>DRHKAT</title>
@@ -8,10 +9,8 @@
   <!-- component -->
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-  <!-- component -->
-  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/countup@1.8.2/dist/countUp.min.js"></script>
-  <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css');</style>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 <body lass="bg-gray-200 lg:flex">
@@ -23,11 +22,12 @@
     </button>
     <!-- Logo -->
     <div class="ml-1">
-      <img src="/LOGO.bmp" alt="logo" class="h-20 w-28">
+      <img th:src="@{/LOGO.bmp}" alt="logo" class="h-20 w-28">
     </div>
 
     <!-- Ícono de Notificación y Perfil -->
     <div class="space-x-4">
+      <!-- Botón de Perfil -->
       <button>
         <span sec:authentication="name"></span>
         <i class="fas fa-user text-cyan-500 text-lg"></i>
@@ -35,6 +35,7 @@
       <button>
         <i class="fas fa-bell text-cyan-500 text-lg"></i>
       </button>
+
     </div>
   </div>
 </nav>
@@ -44,7 +45,8 @@
   <!-- Items -->
   <div class="p-4 space-y-4">
     <!-- Inicio -->
-    <a href="/home" aria-label="dashboard" class="relative px-4 py-3 flex items-center space-x-4 rounded-lg text-white bg-blue-300 from-sky-600 to-cyan-400">
+    <a href="/" aria-label="dashboard"
+       class="relative px-4 py-3 flex items-center space-x-4 rounded-lg text-white bg-blue-300 from-sky-600 to-cyan-400">
       <i class="fas fa-home text-white"></i>
       <span class="-mr-1 font-medium">Menu</span>
     </a>
@@ -76,55 +78,12 @@
   </div>
 </div>
 
-
-<div class="lg:w-full lg:ml-4 px-72 py-20">
-  <div>
-
-    <h2 class="font-bold text-xl text-gray-600">Enregistrer le Bien</h2>
-    <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
-      <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
-        <div class="text-gray-600">
-          <p class="text-lg font-bold">Personne Details</p>
-          <p>Remplissez tous les champs.</p>
-          <img src="/LOGO.bmp" class="m-4">
-        </div>
-        <div class="lg:col-span-2">
-          <form action="/bien" method="post">
-            <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
-              <div class="md:col-span-3">
-                <select name="users.id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required>
-                  <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.matricule}"></option>
-                </select>
-
-              </div>
-              <div class="md:col-span-2">
-                <label for="adresse">Address</label>
-                <input type="text" name="adresse" placeholder="adresse" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required>
-              </div>
-              <div class="md:col-span-2">
-                <label for="natureBien">natureBien</label>
-                <select name="natureBien"   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                  <option value="APPARTEMENT">APPARTEMENT</option>
-                  <option value="VILLA">VILLA</option>
-                  <option value="AUTRES"> AUTRES</option>
-                </select>
-              </div>
-              <div class="md:col-span-3 text-right">
-                <div class="inline-flex items-end">
-                  <button type="submit"  class="bg-blue-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded">
-                    ajouter
-                  </button>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="lg:w-full lg:ml-64 px-34 py-20 ">
+    <h2 class="text-3xl font-bold text-gray-900">cette page n'existe pas</h2>
 </div>
 </body>
 </html>
+
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     var menuButton = document.getElementById('menu-button');
@@ -136,4 +95,3 @@
     });
   });
 </script>
-

@@ -1,6 +1,6 @@
 package com.gestion.drhkatrec.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 public class Bien {

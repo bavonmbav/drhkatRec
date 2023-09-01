@@ -1,10 +1,11 @@
 package com.gestion.drhkatrec.entity;
 
-import jakarta.persistence.Entity;
+import javax.persistence.Entity;
 
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 @Entity
+@Table(name = "automobile")
 public class Automobile {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
