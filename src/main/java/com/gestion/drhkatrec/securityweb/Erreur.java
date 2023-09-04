@@ -11,6 +11,14 @@ public class Erreur {
         return "erreur/403";
     }
 
+    @GetMapping("/404")
+    public String error404(){
+        return "erreur/403";
+    }
+    @GetMapping("/405")
+    public String error405(){
+        return "erreur/403";
+    }
 
 
 }

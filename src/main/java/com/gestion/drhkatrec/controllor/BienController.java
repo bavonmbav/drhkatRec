@@ -9,9 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,14 +21,14 @@ public class BienController {
     private UsersRepository userRepo;
 
     @GetMapping("/biens")
-    String bien(Model model){
+    public String bien(Model model){
         List<Users> usersList = userRepo.findAll();
         model.addAttribute("users", usersList);
        return "component/bien";
     }
 
-    @PostMapping("/bien")
-    String biens(@ModelAttribute Bien bien, BindingResult result){
+    @PostMapping(path = "/user/bien")
+    public String biens(@ModelAttribute Bien bien, BindingResult result){
 
         System.out.println(bien.toString());
         if (result.hasErrors()) {
@@ -49,7 +47,6 @@ public class BienController {
             repo.save(newBien);
             return ResponseEntity.ok(newBien);
         }catch (IllegalArgumentException e){
-
             return ResponseEntity.badRequest().build();
         }
     }

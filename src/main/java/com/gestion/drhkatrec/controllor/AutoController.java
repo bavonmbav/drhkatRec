@@ -27,7 +27,7 @@ public class AutoController {
         model.addAttribute("users", usersList);
         return "component/bienAutomobile";
     }
-    @PostMapping("/addAuto")
+    @PostMapping("/user/addAuto")
     String addautomobile(@ModelAttribute Automobile automobile, BindingResult result){
         if (result.hasErrors()){
             return "component/bienAutomobile";

@@ -89,7 +89,7 @@
                     <img src="/LOGO.bmp" class="m-4">
                 </div>
                 <div class="lg:col-span-2">
-                    <form action="/addAuto" method="post">
+                    <form th:action="@{user/addAuto}"  method="post">
                         <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                             <div class="md:col-span-3">
                                 <label for="marque">marque</label>

@@ -25,7 +25,7 @@ public class TaxationIrvController {
         return "component/taxationIrv";
     }
 
-    @PostMapping("/addTaxe")
+    @PostMapping("/user/addTaxe")
     String addautomobile(@ModelAttribute TaxationIRV taxe, BindingResult result){
         if (result.hasErrors()){
             return "component/taxationIrv";
