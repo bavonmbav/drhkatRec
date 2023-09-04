@@ -1,5 +1,6 @@
 package com.gestion.drhkatrec.config;
 
+import com.gestion.drhkatrec.securityweb.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +17,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    @Autowired
+    private UserDetailsServiceImpl userDetailsService;
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception{
 //            auth.inMemoryAuthentication()
@@ -27,12 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .password(passwordEncoder()
 //                        .encode("2345")).roles("ADMIN","USER");
 
-            auth.userDetailsService(new UserDetailsService() {
-                @Override
-                public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-                    return null;
-                }
-            });
+            auth.userDetailsService(userDetailsService);
     }
 
     @Bean
