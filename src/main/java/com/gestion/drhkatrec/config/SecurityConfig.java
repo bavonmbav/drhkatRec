@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -39,10 +40,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
     @Override
     public void configure(HttpSecurity http) throws Exception{
-        http.formLogin();
+        http.formLogin().loginPage("/login").permitAll().and().logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll();
         http.authorizeRequests().antMatchers("/").permitAll();
-        http.authorizeRequests().antMatchers("/adduser/**","/addusers/**").hasAuthority("ADMIN");
-        http.authorizeRequests().antMatchers("/index/**","/user/**").hasAuthority("USER");
+        http.authorizeRequests().antMatchers("/registre").permitAll();
+        http.authorizeRequests().antMatchers("/UserManagement/**","/rapport/**",
+                "/deletes/**","/addroles/**","/addrole/**").hasAuthority("ADMIN");
+        http.authorizeRequests().antMatchers("/index/**","/user/**",
+                "/adduser/**","/addusers/**").hasAuthority("USER");
         http.authorizeRequests().anyRequest().authenticated();
         http.exceptionHandling().accessDeniedPage("/403");
         http.exceptionHandling().accessDeniedPage("/404");

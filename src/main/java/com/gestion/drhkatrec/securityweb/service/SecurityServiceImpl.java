@@ -1,6 +1,5 @@
 package com.gestion.drhkatrec.securityweb.service;
 
-import com.gestion.drhkatrec.entity.Users;
 import com.gestion.drhkatrec.securityweb.entity.Roles;
 import com.gestion.drhkatrec.securityweb.entity.Useres;
 import com.gestion.drhkatrec.securityweb.repository.AppRoleRepository;
@@ -12,6 +11,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -26,11 +27,12 @@ public class SecurityServiceImpl implements SecurityService {
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public Useres saveUser(String username, String password, String stpassword) {
+    public Useres saveUser(String username, String password, String email, String stpassword) {
         if (!password.equals(stpassword)) throw new RuntimeException("mot de passe incorect");
         String haspass = passwordEncoder.encode(password);
         Useres users = new Useres();
         users.setUsername(username);
+        users.setEmail(email);
         users.setUsername_Id(UUID.randomUUID().toString());
         users.setPassword(haspass);
         users.setActive(true);
@@ -58,7 +60,7 @@ public class SecurityServiceImpl implements SecurityService {
         if (use == null) throw new RuntimeException("utilisateur n'existe pas ");
 
         Roles roles = appRoleRepository.findByRolename(rolename);
-        if (roles == null) throw new RuntimeException("utilisateur n'existe pas ");
+        if (roles == null) throw new RuntimeException("le role n'existe pas ");
 
         use.getAppRoles().add(roles);
 
@@ -72,14 +74,34 @@ public class SecurityServiceImpl implements SecurityService {
         if (use == null) throw new RuntimeException("utilisateur n'existe pas ");
 
         Roles roles = appRoleRepository.findByRolename(rolename);
-        if (roles == null) throw new RuntimeException("utilisateur n'existe pas ");
+        if (roles == null) throw new RuntimeException("le role n'existe pas ");
 
         use.getAppRoles().remove(roles);
 
     }
 
     @Override
+    public ArrayList<Useres> findAll() {
+        return (ArrayList<Useres>) userRepository.findAll();
+    }
+
+    @Override
+    public ArrayList<Roles> findAlls() {
+        return (ArrayList<Roles>) appRoleRepository.findAll();
+    }
+
+    @Override
     public Useres loadUserByUserName(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public void delete(Useres useres) {
+        userRepository.delete(useres);
+    }
+
+    @Override
+    public Optional<Useres> findById(String id) {
+        return userRepository.findById(id);
     }
 }

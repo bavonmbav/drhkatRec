@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>DRHKAT</title>
@@ -88,7 +90,7 @@
 <div class="lg:w-full lg:ml-4 px-72 py-20">
     <div>
 
-        <h2 class="font-bold text-xl text-gray-600">Enregistrer les Biens Automobiles</h2>
+        <h2 class="font-bold text-xl text-gray-600">ajouter un role</h2>
         <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
                 <div class="text-gray-600">
@@ -97,42 +99,19 @@
                     <img src="/LOGO.bmp" class="m-4">
                 </div>
                 <div class="lg:col-span-2">
-                    <form th:action="@{user/addAuto}"  method="post">
+                    <form th:action="@{/addroles}" method="post">
                         <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                             <div class="md:col-span-3">
-                                <label for="marque">marque</label>
-                                <input type="text" name="marque" id="marque" placeholder="marque" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required>
-                            </div>
+                                <select name="users.id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required>
+                                    <option th:each="user : ${users}" th:value="${user.username_Id}" th:text="${user.username}"></option>
+                                </select>
 
-                            <div class="md:col-span-2">
-                                <label for="modele">modele</label>
-                                <input type="text" name="modele" placeholder="modele" id="modele" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required>
-                            </div>
-                            <div class="md:col-span-2">
-                                <label for="matricule">matricule</label>
-                                <input type="text" name="matricule" placeholder="matricule" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required>
                             </div>
                             <div class="md:col-span-3">
-                                <label for="NumChassis">numero de chassis</label>
-                                <input type="text" name="NumChassis" placeholder="NumChassis" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required>
-                            </div>
-                            <div class="md:col-span-2">
-                                <label for="puissanceFiscale">puissanceFiscale</label>
-                                <input type="text" name="puissanceFiscale" placeholder="puissanceFiscale" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required>
-                            </div>
-                            <div class="md:col-span-3">
-                                <select name="contribuable_id.id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required>
-                                    <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.matricule}"></option>
-                                </select>
-                                 </div>
-                            <div class="md:col-span-2">
-                                <label for="city">Genre</label>
-                                <select name="genre"   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                                    <option value="M">masculin</option>
-                                    <option value="F"> feminin</option>
+                                <select name="users.id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required>
+                                    <option th:each="role : ${rol}" th:value="${role.id_role}" th:text="${role.rolename}"></option>
                                 </select>
                             </div>
-
                             <div class="md:col-span-3 text-right">
                                 <div class="inline-flex items-end">
                                     <button type="submit"  class="bg-blue-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded">
@@ -160,3 +139,4 @@
         });
     });
 </script>
+
