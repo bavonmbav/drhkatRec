@@ -60,6 +60,21 @@ private SecurityServiceImpl service;
         service.addRoletoUser(useres.getUsername(), "USER");
         return "securityweb/login";
     }
+    @GetMapping("/registreU")
+    public String registreu(){
+        return "securityweb/registerUser";
+    }
+
+    @PostMapping("/registreU")
+    public String saveUsers(@ModelAttribute Useres useres, BindingResult result){
+        if (result.hasErrors()){
+            return "securityweb/UserManagement";
+        }
+        String stpasse = useres.getPassword();
+        service.saveUser(useres.getUsername(), useres.getPassword(), useres.getEmail(), stpasse);
+        service.addRoletoUser(useres.getUsername(), "USER");
+        return "securityweb/UserManagement";
+    }
     public ArrayList<Useres> useres;
     @GetMapping("/UserManagement")
     public String index(Model model) {

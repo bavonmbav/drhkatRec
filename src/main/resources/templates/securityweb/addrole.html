@@ -102,13 +102,13 @@
                     <form th:action="@{/addroles}" method="post">
                         <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                             <div class="md:col-span-3">
-                                <select name="users.id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required>
-                                    <option th:each="user : ${users}" th:value="${user.username_Id}" th:text="${user.username}"></option>
+                                <select name="users.username_id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required>
+                                    <option th:each="user : ${users}" th:value="${user.username_Id}" th:text="${user.getUsername()}"></option>
                                 </select>
 
                             </div>
                             <div class="md:col-span-3">
-                                <select name="users.id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required>
+                                <select name="roles.id_role"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required>
                                     <option th:each="role : ${rol}" th:value="${role.id_role}" th:text="${role.rolename}"></option>
                                 </select>
                             </div>

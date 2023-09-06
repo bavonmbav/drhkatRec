@@ -94,39 +94,39 @@
         <h1 class="text-4xl text-center mb-8">Gestion des utilisateurs</h1>
         <!--    Ajouter un étudiant -->
         <div class="flex justify-end mb-4">
-            <a href="/registre" class="bg-blue-500 hover:bg-blue-700
+            <a href="/registreU" class="bg-blue-500 hover:bg-blue-700
             text-white font-bold py-2 px-4 rounded">ajouter un USer</a>
         </div>
         <div class="flex justify-end mb-4">
             <a href="/addrole" class="bg-blue-500 hover:bg-blue-700
             text-white font-bold py-2 px-4 rounded">ajouter un role</a>
         </div>
-        <table class="table-auto w-full">
+        <table class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 lg:w-full lg:ml-20 px-64 py-10">
             <thead>
             <tr>
-                <th class="px-4 py-2">id</th>
-                <th class="px-4 py-2">Nom</th>
-                <th class="px-4 py-2">Email</th>
-                <th class="px-4 py-2">password</th>
-                <th class="px-4 py-2">active</th>
-                <th class="px-4 py-2">Role</th>
-                <th class="px-4 py-2">Actions</th>
+                <th scope="col" class="px-6 py-3">id</th>
+                <th scope="col" class="px-6 py-3">Nom</th>
+                <th scope="col" class="px-6 py-3">Email</th>
+                <th scope="col" class="px-6 py-3">password</th>
+                <th scope="col" class="px-6 py-3">active</th>
+                <th scope="col" class="px-6 py-3">Role</th>
+                <th scope="col" class="px-6 py-3">Actions</th>
             </tr>
             </thead>
             <tbody>
             <!-- boucle thymeleaf 'studentsList' -->
-            <tr th:each="user : ${users}">
-                <td class="border px-4 py-2" th:text="${user.username_Id}"></td>
-                <td class="border px-4 py-2" th:text="${user.username}"></td>
-                <td class="border px-4 py-2" th:text="${user.email}"></td>
-                <td class="border px-4 py-2" th:text="${user.password}"></td>
-                <td class="border px-4 py-2" th:text="${user.active}"></td>
-                <td class="border px-4 py-2" th:text="${user.appRoles}"></td>
+            <tr th:each="user : ${users}" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <td  class="px-6 py-4" th:text="${user.username_Id}"></td>
+                <td class="px-6 py-4" th:text="${user.username}"></td>
+                <td class="px-6 py-4" th:text="${user.email}"></td>
+                <td class="px-6 py-4" th:text="${user.password}"></td>
+                <td class="px-6 py-4" th:text="${user.active}"></td>
+                <td class="px-6 py-4" th:text="${user.appRoles}"></td>
 
-                <td class="border px-4 py-2">
-                    <a href="#" th:href="'/edit/' + ${user.username_Id}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Modifier</a>
+                <td class="flex items-center px-6 py-4 space-x-3">
+                    <a href="#" th:href="'/edit/' + ${user.username_Id}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Modifier</a>
                     <form class="inline-block" method="post" th:action="'/deletes/' + ${user.username_Id}">
-                        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Supprimer</button>
+                        <button type="submit" class="font-medium text-red-600 dark:text-red-500 hover:underline">Supprimer</button>
                     </form>
                 </td>
             </tbody>
