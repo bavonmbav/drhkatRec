@@ -20,6 +20,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Useres user = service.loadUserByUserName(username);
+        if (user == null) {
+            throw new CustomUserNotFoundException("L'utilisateur avec le nom d'utilisateur '" + username + "' n'a pas été trouvé.");
+        }
         Collection<GrantedAuthority>authorities = user.getAppRoles().stream().map(
                 roles -> new SimpleGrantedAuthority(roles.getRolename())
         ).collect(Collectors.toList());

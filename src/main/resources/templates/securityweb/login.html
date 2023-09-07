@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <script src="https://cdn.tailwindcss.com"></script>
     <meta charset="UTF-8">
     <title>Login</title>
     <style>
@@ -186,7 +187,9 @@
             </div>
 
                 <button class="btn" name="submit" type="submit" >Login</button>
-
+            <div class="error-message" th:if="${param.error}">
+                <p class=" text-rose-500 ">Identifiants invalides. Veuillez réessayer.</p>
+            </div>
             <div class="logreg-link">
                 <p> creer un compte
                     <a href="/registre" class="registre-link">
