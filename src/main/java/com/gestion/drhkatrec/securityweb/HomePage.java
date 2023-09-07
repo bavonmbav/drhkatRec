@@ -10,10 +10,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,24 +94,36 @@ private SecurityServiceImpl service;
     //ajouter un role a un utilisateur
 
     @PostMapping("/addroles")
-    public String addrole(@ModelAttribute Useres useres, BindingResult result){
-        Roles roles = new Roles();
-        useres = new Useres();
-        if (result.hasErrors()){
-            return "redirect:/UserManagement";
-        }
-        service.addRoletoUser(useres.getUsername(), roles.getRolename());
+    public String addrole(@RequestParam("username") String useres,Model model,  @RequestParam("rolename") String role){
+
+        service.addRoletoUser(useres,role);
         return "redirect:/UserManagement";
     }
     @GetMapping("/addrole")
     public String addrol(Model model)
     {
         List<Useres> usersList = service.findAll();
-        model.addAttribute("users", usersList);
+        model.addAttribute("useres", usersList);
         List<Roles> RoleList = service.findAlls();
         model.addAttribute("rol", RoleList);
 
         return "securityweb/addrole";
+    }
+    @PostMapping("/deleteRole")
+    public String deleterole(@RequestParam("username") String useres,Model model,  @RequestParam("rolename") String role){
+
+        service.removeRoleforUser(useres,role);
+        return "redirect:/UserManagement";
+    }
+    @GetMapping("/deleteRoles")
+    public String deleterole(Model model)
+    {
+        List<Useres> usersList = service.findAll();
+        model.addAttribute("use", usersList);
+        List<Roles> RoleList = service.findAlls();
+        model.addAttribute("rols", RoleList);
+
+        return "securityweb/deleteRole";
     }
 
 

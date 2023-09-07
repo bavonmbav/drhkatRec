@@ -45,7 +45,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/").permitAll();
         http.authorizeRequests().antMatchers("/registre").permitAll();
         http.authorizeRequests().antMatchers("/UserManagement/**","/rapport/**",
-                "/deletes/**","/addroles/**","/addrole/**","/registreU/**").hasAuthority("ADMIN");
+                "/deletes/**","/addroles/**","/addrole/**","/registreU/**",
+                "/deleteRole/**","/deleteRoles/**").hasAuthority("ADMIN");
         http.authorizeRequests().antMatchers("/index/**","/user/**",
                 "/adduser/**","/addusers/**").hasAuthority("USER");
         http.authorizeRequests().anyRequest().authenticated();
